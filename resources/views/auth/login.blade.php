@@ -7,7 +7,7 @@
             <x-form.field name="password" label="Password" type="password" />
             
             <div class="flex justify-center">
-                <button type="submit" class="btn mt-2 h-10 ">Create account</button>
+                <button type="submit" class="btn mt-2 h-10 w-full ">Log in</button>
             </div>
         </form>
     </x-form>

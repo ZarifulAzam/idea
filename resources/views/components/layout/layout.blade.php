@@ -11,11 +11,16 @@
     <x-layout.nav />
 
     {{-- Flash Data --}}
-    @if (session('success'))
-        <div class="fixed bottom-4 right-4 bg-primary text-primary-foreground px-6 py-3 rounded-xl shadow-lg">
-            {{ session('success') }}
+    @session('success')
+        <div 
+            x-data="{ show: true }"
+            x-init="setTimeout(() => show = false, 3000ms)"
+            x-show="show"
+            x-transition.opacity.duration.300ms
+            class="fixed bottom-4 right-4 bg-primary text-primary-foreground px-6 py-3 rounded-xl shadow-lg">
+            {{ $value }}
         </div>
-    @endif
+    @endsession
 
     <main class="max-w-7xl mx-auto px-6">
         {{ $slot }}
