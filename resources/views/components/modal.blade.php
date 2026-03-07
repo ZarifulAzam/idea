@@ -23,8 +23,8 @@
     id="modal-{{ $name }}"
 
 >
-    <x-card @click.away="show = false" class="shadow-xl max-w-2xl w-full max-h[800vh]  overflow-auto">
-        <div class="flex justify-between ">
+    <x-card @click.away="show = false" class="shadow-xl max-w-2xl w-full max-h-[80vh] overflow-auto">
+        <div class="flex justify-between items-center">
             <h2 id="modal-{{ $name }}-title" class="text-2xl font-bold">{{ $title }}</h2>
 
             <button @click="show = false" aria-label="Close modal">
@@ -32,7 +32,7 @@
             </button>
         </div>
 
-        <div mt-6>
+        <div class="mt-6">
             {{ $slot }}
         </div>
     </x-card>

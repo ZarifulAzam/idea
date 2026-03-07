@@ -43,7 +43,12 @@ class IdeaController extends Controller
      */
     public function store(StoreIdeaRequest $request)
     {
-        Auth::user()->ideas()->create($request->validated());
+        $idea = Auth::user()->ideas()->create($request->safe()->except('steps'));
+
+        $idea->steps()->createMany(
+            collect($request->steps ?? [])->map(fn ($step) => ['description' => $step, 'completed' => false])
+        );
+
         return to_route('idea.index')->with('success', 'Idea created');
     }
 
@@ -78,7 +83,7 @@ class IdeaController extends Controller
      */
     public function destroy(Idea $idea)
     {
-        //authorize that this is allowed
+        // authorize that this is allowed
 
         $idea->delete();
 
