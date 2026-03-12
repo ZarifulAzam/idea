@@ -1,40 +1,24 @@
+/**
+ * Form Styles
+ *
+ * Defines the visual appearance for form inputs, textareas, labels,
+ * file upload inputs, and helper elements.
+ * Uses CSS custom properties (variables) from the theme in app.css.
+ */
+
+/* Labels are white/light text (foreground color) */
 label {
     color: var(--color-foreground);
 }
 
-.input {
-    border-radius: var(--radius-md);
-    height: calc(var(--spacing) * 10);
-    width: 100%;
-    border-width: 1px;
-    border-color: var(--color-border);
-    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
-    background-color: var(--color-card);
-    color: var(--color-foreground);
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-}
-
-.input::placeholder {
-    color: var(--color-muted-foreground);
-}
-
-.input:focus-visible {
-    outline: 0;
-    box-shadow:
-        0 0 0 calc(var(--spacing) * .5) var(--color-background)
-        0 0 0 calc(var(--spacing) * 1) var(--color-primary);
-}
-
-@media (min-width: var(--breakpoint-md)) {
-    .input {
-        font-size: var(--text-sm);
-    }
-}
-
+/**
+ * .input and .textarea — Common styles for text inputs and textareas.
+ * Dark background (card color), light text, rounded corners, subtle border.
+ * Focus ring uses the primary color for accessibility.
+ */
+.input,
 .textarea {
     border-radius: var(--radius-md);
-    height: calc(var(--spacing) * 40);
     width: 100%;
     border-width: 1px;
     border-color: var(--color-border);
@@ -43,24 +27,60 @@ label {
     color: var(--color-foreground);
     outline: 2px solid transparent;
     outline-offset: 2px;
+    font-size: var(--text-sm);
 }
 
+/* Fixed height for single-line inputs */
+.input {
+    height: calc(var(--spacing) * 10);
+}
+
+/* Taller height for multi-line textareas */
+.textarea {
+    height: calc(var(--spacing) * 40);
+}
+
+/* Placeholder text uses the muted (dimmed) color */
+.input::placeholder,
 .textarea::placeholder {
     color: var(--color-muted-foreground);
 }
 
+/* Focus ring: double-ring effect using box-shadow (background + primary color) */
+.input:focus-visible,
 .textarea:focus-visible {
     outline: 0;
     box-shadow:
-        0 0 0 calc(var(--spacing) * .5) var(--color-background)
+        0 0 0 calc(var(--spacing) * .5) var(--color-background),
         0 0 0 calc(var(--spacing) * 1) var(--color-primary);
 }
 
+/* .label — Block-level label with small text */
 .label {
     display: block;
     font-size: var(--text-sm);
 }
 
+/* .form-muted-icon — Muted icon buttons (add step, add link) that brighten on hover */
+.form-muted-icon {
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+}
+
+.form-muted-icon:hover {
+    color: var(--color-foreground);
+}
+
+/* Disabled state: faded and not clickable */
+.form-muted-icon:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/**
+ * File input styling — Custom look for <input type="file">.
+ * The file selector button uses the primary color to match the design.
+ */
 input[type=file] {
     display: block;
     width: 100%;
@@ -79,6 +99,7 @@ input[type=file]::file-selector-button {
     font-weight: 500;
     background-color: var(--color-primary);
     color: var(--color-primary-foreground);
+    cursor: pointer;
 }
 
 input[type=file]::file-selector-button:hover {

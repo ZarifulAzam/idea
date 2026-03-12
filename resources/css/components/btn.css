@@ -1,7 +1,19 @@
+/**
+ * Button Styles
+ *
+ * Defines the visual appearance for buttons and navigation links.
+ * Uses CSS custom properties (variables) from the theme in app.css.
+ */
+
+/* Make all buttons use pointer cursor by default */
 button {
     cursor: pointer;
 }
 
+/**
+ * .btn — Primary button style (green background, dark text).
+ * Used for main actions like "Create", "Register", "Update".
+ */
 .btn {
     background: var(--color-primary);
     border-radius: var(--radius-xl);
@@ -10,15 +22,19 @@ button {
     font-size: var(--text-sm);
     font-weight: var(--font-weight-medium);
     cursor: pointer;
-    height: calc(var(--spacing) * 8);
-    line-height: calc(var(--spacing) * 8);
+    height: calc(var(--spacing) * 10);
+    line-height: calc(var(--spacing) * 10);
     display: inline-block;
+    transition: background 0.15s;
 }
 
+/**
+ * .btn.btn-outlined — Outlined variant (transparent background, border).
+ * Used for secondary actions like "Edit", "Delete", and inactive filter tabs.
+ */
 .btn.btn-outlined {
     background: transparent;
     border: 1px solid var(--color-border);
-    border-color: var(--color-border);
     color: var(--color-foreground);
 }
 
@@ -26,17 +42,35 @@ button {
     background: color-mix(in srgb, black 25%, var(--color-input));
 }
 
+/* .btn.btn-ghost — Ghost variant (no background, no border) */
 .btn.btn-ghost {
     background: transparent;
 }
 
+/* When a button contains an SVG icon, use flexbox to align icon + text */
 .btn:has(> svg) {
     display: flex;
     align-items: center;
     column-gap: calc(var(--spacing) * 2);
 }
 
+/* Slightly darken the primary button on hover */
 .btn:hover {
     background: color-mix(in srgb, black 10%, var(--color-primary));
     text-decoration: none;
+}
+
+/**
+ * .nav-link — Navigation link style (muted text, brightens on hover).
+ * Used in the navbar for "Edit Profile", "Logout", "Sign in".
+ */
+.nav-link {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+}
+
+.nav-link:hover {
+    color: var(--color-foreground);
 }

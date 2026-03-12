@@ -7,6 +7,12 @@ namespace App\Http\Controllers;
 use App\Models\Step;
 use Illuminate\Http\Request;
 
+/**
+ * StepController — Handles toggling a step's completed status.
+ *
+ * Steps are sub-tasks of an Idea. This controller only uses the update method
+ * to toggle a step between completed and not completed (checkbox behavior).
+ */
 class StepController extends Controller
 {
     /**
@@ -50,7 +56,15 @@ class StepController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Toggle a step's completed status.
+     *
+     * If the step is currently NOT completed, mark it as completed.
+     * If the step IS completed, mark it as not completed.
+     *
+     * The "!" (not) operator flips the boolean:
+     *   false becomes true, true becomes false.
+     *
+     * After toggling, redirects back to the idea's show page.
      */
     public function update(Step $step)
     {

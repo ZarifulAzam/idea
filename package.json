@@ -16,6 +16,8 @@
     },
     "dependencies": {
         "@alpinejs/focus": "^3.15.8",
-        "alpinejs": "^3.15.8"
+        "@tailwindcss/typography": "github:tailwindcss/typography",
+        "alpinejs": "^3.15.8",
+        "typography": "^0.16.24"
     }
 }

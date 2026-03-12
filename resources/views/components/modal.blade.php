@@ -1,3 +1,20 @@
+{{-- 
+    Modal Component — A reusable popup overlay with Alpine.js.
+    
+    Props:
+    - name:  Unique identifier for this modal (e.g. 'create-idea', 'edit-idea')
+    - title: Text shown at the top of the modal
+    
+    How it works:
+    - Listens for 'open-modal' events on the window
+    - Opens only if the event detail matches this modal's name
+    - Closes on: pressing Escape, clicking outside, or clicking the X button
+    - x-trap: Traps keyboard focus inside the modal when open (accessibility)
+    - Has enter/leave transitions for smooth animation
+    
+    Usage to open: $dispatch('open-modal', 'modal-name')
+    Usage to close: $dispatch('close-modal')
+--}}
 @props(['name', 'title'])
 
 <div
@@ -23,7 +40,9 @@
     id="modal-{{ $name }}"
 
 >
+    {{-- Modal body — closes when clicking outside (@click.away) --}}
     <x-card @click.away="show = false" class="shadow-xl max-w-2xl w-full max-h-[80vh] overflow-auto">
+        {{-- Header: title + close button --}}
         <div class="flex justify-between items-center">
             <h2 id="modal-{{ $name }}-title" class="text-2xl font-bold">{{ $title }}</h2>
 
@@ -32,6 +51,7 @@
             </button>
         </div>
 
+        {{-- Modal content (injected via {{ $slot }}) --}}
         <div class="mt-6">
             {{ $slot }}
         </div>

@@ -1,30 +1,31 @@
 <?php
 
-use Tests\TestCase;
-
 /*
 |--------------------------------------------------------------------------
 | Test Case
 |--------------------------------------------------------------------------
 |
+| Pest is the testing framework for this application.
 | The closure you provide to your test functions is always bound to a specific PHPUnit test
 | case class. By default, that class is "PHPUnit\Framework\TestCase". Of course, you may
 | need to change it using the "pest()" function to bind a different classes or traits.
 |
+| Each test file uses its own uses() call to bind TestCase and RefreshDatabase
+| (this gives IDE support and makes bindings explicit per file).
+|
 */
 
-pest()->extend(TestCase::class)
- // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature');
+// Per-file uses() declarations provide IDE support and make bindings explicit.
 
 /*
 |--------------------------------------------------------------------------
 | Expectations
 |--------------------------------------------------------------------------
 |
-| When you're writing tests, you often need to check that values meet certain conditions. The
-| "expect()" function gives you access to a set of "expectations" methods that you can use
-| to assert different things. Of course, you may extend the Expectation API at any time.
+| Custom expectations extend Pest's assertion library.
+| expect()->extend() lets you create reusable assertions.
+|
+| Example: expect($value)->toBeOne() checks that $value === 1
 |
 */
 
@@ -35,9 +36,8 @@ expect()->extend('toBeOne', fn () => $this->toBe(1));
 | Functions
 |--------------------------------------------------------------------------
 |
-| While Pest is very powerful out-of-the-box, you may have some testing code specific to your
-| project that you don't want to repeat in every file. Here you can also expose helpers as
-| global functions to help you to reduce the number of lines of code in your test files.
+| Global helper functions available in all test files.
+| Define shared test utilities here to reduce code duplication.
 |
 */
 
